@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model BookRatingApp.Models.Book
+@{
+    ViewData["Title"] = "Προσθήκη Νέου Βιβλίου";
+}
+<h2>Προσθήκη Νέου Βιβλίου</h2>
+
+<form asp-action="Create" method="post" class="form">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Τίτλος</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Author" class="form-label">Συγγραφέας</label>
+        <input asp-for="Author" class="form-control" />
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Genre" class="form-label">Είδος</label>
+        <input asp-for="Genre" class="form-control" />
+        <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Καταχώριση</button>
+</form>
