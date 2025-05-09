@@ -1,10 +1,20 @@
-﻿using BookRatingApp.Models;
+﻿using BookRatingApp.Data;
+using BookRatingApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookRatingApp.Controllers
 {
     public class BooksController : Controller
     {
+        private readonly AppDbContext _context;
+        private readonly ILogger<BooksController> _logger;
+
+        public BooksController(ILogger<BooksController> logger ,AppDbContext context)
+        {
+            _context = context;
+            _logger = logger;
+        }
+        
         private static List<Book> books = new List<Book>();
         public IActionResult Index()
         {
@@ -20,7 +30,8 @@ namespace BookRatingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                book.Id = books.Count + 1; 
+                _context.Add(book);
+                _context.SaveChanges();
                 books.Add(book);
                 return RedirectToAction("Index");
             }

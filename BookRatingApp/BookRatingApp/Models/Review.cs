@@ -4,6 +4,8 @@ namespace BookRatingApp.Models
 {
     public class Review
     {
+
+        public int Id { get; set; }
         [Required]
         public string Reviewer { get; set; }
 
