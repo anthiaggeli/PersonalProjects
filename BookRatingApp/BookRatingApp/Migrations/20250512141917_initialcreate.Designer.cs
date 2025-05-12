@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookRatingApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250512103044_initialDatabaseCreation")]
-    partial class initialDatabaseCreation
+    [Migration("20250512141917_initialcreate")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

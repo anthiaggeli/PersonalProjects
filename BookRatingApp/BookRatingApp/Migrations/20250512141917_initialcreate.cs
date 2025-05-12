@@ -5,7 +5,7 @@
 namespace BookRatingApp.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDatabaseCreation : Migration
+    public partial class initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

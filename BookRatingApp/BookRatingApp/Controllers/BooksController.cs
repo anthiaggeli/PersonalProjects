@@ -53,16 +53,18 @@ namespace BookRatingApp.Controllers
             return View(new Review());
         }
         [HttpPost]
-        public IActionResult AddReview(int id, Review review)
+        public IActionResult AddReview([Bind("Reviewer,Comment,Rating,BookId")] int id, Review review)
         {
-            review.Book = _context.Books.FirstOrDefault(b => b.Id == id);
+            review.BookId = id;
+            review.Book = _context.Books.FirstOrDefault(b => b.Id == review.BookId);
             Console.WriteLine($"review.Book is {review.Book.Title}");
             if (ModelState.IsValid)
             {
                 var book = _context.Books.FirstOrDefault(b => b.Id == id);
                 if (book != null)
                 {
-                    book.Reviews.Add(review);
+                    review.Book = book;
+                    _context.Reviews.Add(review);
                     _context.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
@@ -72,8 +74,10 @@ namespace BookRatingApp.Controllers
             {
                 foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
                 {
-                    Console.WriteLine(error.ErrorMessage);
+                    _logger.LogError(error.ErrorMessage);
+                    Console.WriteLine($"Error: {error.ErrorMessage}");
                 }
+                ViewBag.BookTitle = review.Book?.Title;
                 return View(review);
             }
             

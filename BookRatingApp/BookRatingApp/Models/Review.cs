@@ -21,11 +21,3 @@ namespace BookRatingApp.Models
 
     }
 }
-
-    
-
-   
-
-    
-
-
