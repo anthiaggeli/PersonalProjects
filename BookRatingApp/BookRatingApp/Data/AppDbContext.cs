@@ -1,6 +1,8 @@
 ﻿using BookRatingApp.Models;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace BookRatingApp.Data
 {
     public class AppDbContext:DbContext
@@ -10,5 +12,7 @@ namespace BookRatingApp.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        
+
     }
 }

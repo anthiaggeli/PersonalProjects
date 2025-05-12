@@ -12,18 +12,12 @@
     </a>
 </p>
 
-@if (Model == null)
+@if (Model == null || !Model.Any())
 {
     <p class="text-danger">Άδεια λίστα βιβλίων.</p>
 }
 else
 {
-    @if (!Model.Any())
-    {
-        <p class="text-warning">Δεν υπάρχουν βιβλία.</p>
-    }
-    else
-    {
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -31,25 +25,21 @@ else
                     <th>Συγγραφέας</th>
                     <th>Είδος</th>
                     <th>Κριτικές</th>
-                    <th>Ενέργειες</th>
-                </tr>
             </thead>
             <tbody>
                 @foreach (var book in Model)
                 {
                     <tr>
-                        <td>@book.Title</td>
+                        <td>
+                        <a asp-controller="Books" asp-action="AddReview" asp-route-id="@book.Id">
+                            @book.Title
+                        </a>
+                        </td>
                         <td>@book.Author</td>
                         <td>@book.Genre</td>
-                        <td>@book.Reviews.Count</td>
-                        <td>
-                            <a href="/Books/Details/@book.Id" class="btn btn-info btn-sm">
-                                Προβολή
-                            </a>
-                        </td>
+                        <td>@book.Reviews.Count</td>                        
                     </tr>
                 }
             </tbody>
         </table>
-    }
 }

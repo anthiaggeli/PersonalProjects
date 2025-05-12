@@ -15,7 +15,6 @@ namespace BookRatingApp.Controllers
             _logger = logger;
         }
         
-        private static List<Book> books = new List<Book>();
         public IActionResult Index()
         {
             return RedirectToAction("Index", "Home");
@@ -30,9 +29,8 @@ namespace BookRatingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(book);
+                _context.Books.Add(book);
                 _context.SaveChanges();
-                books.Add(book);
                 return RedirectToAction("Index");
             }
             else
@@ -46,7 +44,7 @@ namespace BookRatingApp.Controllers
         }
         public IActionResult AddReview(int id)
         {
-            var book = books.FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
             if (book == null)
             {
                 return NotFound();
@@ -57,27 +55,28 @@ namespace BookRatingApp.Controllers
         [HttpPost]
         public IActionResult AddReview(int id, Review review)
         {
+            review.Book = _context.Books.FirstOrDefault(b => b.Id == id);
+            Console.WriteLine($"review.Book is {review.Book.Title}");
             if (ModelState.IsValid)
             {
-                var book = books.FirstOrDefault(b => b.Id == id);
+                var book = _context.Books.FirstOrDefault(b => b.Id == id);
                 if (book != null)
                 {
                     book.Reviews.Add(review);
-                    return RedirectToAction("Details", new { id });
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "Home");
                 }
                 return NotFound();
             }
-            return View(review);
-        }
-        public IActionResult Details(int id)
-        {
-            var book = books.FirstOrDefault(b => b.Id == id);
-            if (book == null)
+            else
             {
-                return NotFound();
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View(review);
             }
-            return View(book);
+            
         }
-
     }
 }
