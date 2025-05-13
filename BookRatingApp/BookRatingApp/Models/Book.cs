@@ -19,6 +19,3 @@ namespace BookRatingApp.Models
         public List<Review> Reviews { get; set; } = new List<Review>();
     }
 }
-
-    
-

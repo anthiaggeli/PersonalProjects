@@ -16,8 +16,9 @@ namespace BookRatingApp.Models
         public int Rating { get; set; } // 1 to 5
         
         [Required]
-        public int BookId { get; internal set; }
-        public Book Book { get; set; }  // Σχέση με το Book (αλλά δεν απαιτείται να το στείλεις από τη φόρμα)
+        public int BookId { get; set; }
 
+        public Book? Book { get; set; } // Σχέση με το Book (αλλά δεν απαιτείται να το στείλεις από τη φόρμα)
+    
     }
 }

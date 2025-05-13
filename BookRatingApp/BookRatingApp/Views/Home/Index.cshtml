@@ -1,4 +1,4 @@
-﻿@model List<BookRatingApp.Models.Book>
+﻿@model List<Book>
 
 @{
     ViewData["Title"] = "Λίστα Βιβλίων";
@@ -31,7 +31,7 @@ else
                 {
                     <tr>
                         <td>
-                        <a asp-controller="Books" asp-action="AddReview" asp-route-id="@book.Id">
+                        <a asp-controller="Books" asp-action="AddReview" asp-route-bookId="@book.Id">
                             @book.Title
                         </a>
                         </td>
