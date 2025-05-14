@@ -42,53 +42,5 @@ namespace BookRatingApp.Controllers
             }
             return View(book);
         }
-        public IActionResult AddReview(int bookId)
-        {
-            var book = _context.Books.FirstOrDefault(b => b.Id == bookId);
-            if (book == null)
-            {
-                return NotFound();
-            }
-            // Δημιουργούμε ένα νέο Review και του περνάμε το BookId
-            var review = new Review
-            {
-                BookId = bookId // Αυτό είναι το BookId που θέλουμε να στείλουμε
-            };
-
-            ViewBag.BookTitle = book.Title;
-            return View(review);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddReview(Review review)
-        {
-            //Console.WriteLine($"review.Book is {review.Book.Title}");
-            Console.WriteLine($"BookId received: {review.BookId}");
-
-            var book = _context.Books.FirstOrDefault(b => b.Id == review.BookId);
-            if (book == null)
-            {
-                return NotFound(); // No matching book
-            }
-
-            if (ModelState.IsValid)
-            {
-                _context.Reviews.Add(review);
-                _context.SaveChanges();
-                Console.WriteLine($"Book title received: {_context.Books.FirstOrDefault(b => b.Id == review.BookId)}");
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                Console.WriteLine("State invalid");
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    _logger.LogError(error.ErrorMessage);
-                    Console.WriteLine($"Error: {error.ErrorMessage}");
-                }
-                ViewBag.BookTitle = book.Title;
-                return View(review);
-            }
-        }
     }
 }

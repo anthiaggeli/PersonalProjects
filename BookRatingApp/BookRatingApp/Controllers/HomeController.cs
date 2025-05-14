@@ -2,11 +2,11 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BookRatingApp.Models;
 using BookRatingApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookRatingApp.Controllers
 {
     public class HomeController : Controller
-      
     {
         private readonly ILogger<HomeController> _logger;
         private readonly AppDbContext _context;
@@ -18,7 +18,7 @@ namespace BookRatingApp.Controllers
 
         public IActionResult Index()
         {
-            var books = _context.Books.ToList();
+            var books = _context.Books.Include(b => b.Reviews).ToList();
             return View(books);
         }
 

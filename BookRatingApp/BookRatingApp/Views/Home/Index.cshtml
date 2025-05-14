@@ -1,45 +1,50 @@
 ﻿@model List<Book>
 
 @{
-    ViewData["Title"] = "Λίστα Βιβλίων";
+	ViewData["Title"] = "Λίστα Βιβλίων";
 }
 
 <h1 class="my-4">📚 Λίστα Βιβλίων</h1>
 
 <p>
-    <a href="/Books/Create" class="btn btn-primary">
-        ➕ Προσθήκη νέου βιβλίου
-    </a>
+	<a href="/Books/Create" class="btn btn-primary">
+		➕ Προσθήκη νέου βιβλίου
+	</a>
 </p>
 
 @if (Model == null || !Model.Any())
 {
-    <p class="text-danger">Άδεια λίστα βιβλίων.</p>
+	<p class="text-danger">Άδεια λίστα βιβλίων.</p>
 }
 else
 {
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>Τίτλος</th>
-                    <th>Συγγραφέας</th>
-                    <th>Είδος</th>
-                    <th>Κριτικές</th>
-            </thead>
-            <tbody>
-                @foreach (var book in Model)
-                {
-                    <tr>
-                        <td>
-                        <a asp-controller="Books" asp-action="AddReview" asp-route-bookId="@book.Id">
-                            @book.Title
-                        </a>
-                        </td>
-                        <td>@book.Author</td>
-                        <td>@book.Genre</td>
-                        <td>@book.Reviews.Count</td>                        
-                    </tr>
-                }
-            </tbody>
-        </table>
+	<table class="table table-striped table-bordered">
+		<thead class="table-dark">
+			<tr>
+				<th>Τίτλος</th>
+				<th>Συγγραφέας</th>
+				<th>Είδος</th>
+				<th>Κριτικές</th>
+		</thead>
+		<tbody>
+			@foreach (var book in Model)
+			{
+				<tr>
+					<td>
+						<a asp-controller="Reviews" asp-action="AddReview" asp-route-bookId="@book.Id">
+							@book.Title
+						</a>
+					</td>
+					<td>@book.Author</td>
+					<td>@book.Genre</td>
+					<td>
+						<a asp-controller="Reviews" asp-action="Index" asp-route-bookId="@book.Id">
+
+							@book.Reviews.Count
+						</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 }
