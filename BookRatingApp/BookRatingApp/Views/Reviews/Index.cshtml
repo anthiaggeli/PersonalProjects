@@ -3,6 +3,41 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    table {
+        background-color: #add8e6; /* Πιο έντονο γαλάζιο χρώμα */
+        border-collapse: collapse; /* Καθαρή εμφάνιση χωρίς κενά */
+        width: 100%;
+        margin: 20px 0;
+    }
+
+        table th {
+            background-color: #87ceeb; /* Εντονότερο γαλάζιο για κεφαλίδες */
+            color: #333;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd; /* Διακριτικό περίγραμμα */
+        }
+
+        table tr:nth-child(even) {
+            background-color: #b0e0e6; /* Εναλλασσόμενο γαλάζιο για ζυγές γραμμές */
+        }
+
+        table tr:hover {
+            background-color: #87cefa; /* Ελαφριά σκίαση κατά το hover */
+        }
+
+    h1 {
+        text-align: center;
+        color: #4682b4; /* Σκούρο γαλάζιο */
+    }
+</style>
+
 
 <h1>Index</h1>
 

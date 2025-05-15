@@ -5,6 +5,48 @@
 @{
     ViewData["Title"] = "Προσθήκη Νέου Βιβλίου";
 }
+<style>
+    body {
+        background-color: #ffe6f2; /* Απαλό ροζ φόντο για τη σελίδα */
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        color: #b30059; /* Σκούρο ροζ για τον τίτλο */
+        margin-bottom: 20px;
+    }
+
+    .form-container {
+        background-color: #ffccf2; /* Ανοιχτό ροζ φόντο για το container */
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ελαφριά σκιά για αισθητική */
+        max-width: 500px;
+        margin: 50px auto; /* Κεντράρισμα του container */
+        text-align: left;
+    }
+
+    .form-label {
+        color: #b30059; /* Σκούρο ροζ για τις ετικέτες */
+    }
+
+    .btn-success {
+        background-color: #ff66b2; /* Φωτεινό ροζ για το κουμπί */
+        border-color: #ff66b2;
+    }
+
+        .btn-success:hover {
+            background-color: #ff3385; /* Πιο έντονο ροζ στο hover */
+            border-color: #ff3385;
+        }
+
+    .text-danger {
+        color: #cc0052; /* Σκούρο κόκκινο-ροζ για μηνύματα λάθους */
+    }
+</style>
+
+<div class="form-container">
 <h2>Προσθήκη Νέου Βιβλίου</h2>
 
 <form asp-action="Create" method="post" class="form">

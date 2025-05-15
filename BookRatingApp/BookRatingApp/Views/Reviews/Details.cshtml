@@ -3,40 +3,88 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    body {
+        background-color: #ccffcc; /* Απαλό λαχανί */
+        font-family: Arial, sans-serif;
+    }
 
-<h1>Details</h1>
+    h1 {
+        text-align: center;
+        color: #006600; /* Σκούρο πράσινο */
+        margin-bottom: 20px;
+    }
 
-<div>
-    <h4>Review</h4>
+    h4 {
+        color: #339933; /* Πράσινο για επικεφαλίδες */
+        text-align: center;
+    }
+
+    dl {
+        background-color: #e6ffe6; /* Ανοιχτό λαχανί για τα περιεχόμενα */
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ελαφριά σκιά */
+        max-width: 600px;
+        margin: 30px auto; /* Κεντράρισμα */
+    }
+
+    dt {
+        font-weight: bold;
+        color: #006600; /* Σκούρο πράσινο */
+    }
+
+    dd {
+        margin-left: 0;
+        color: #004d00; /* Ελαφρώς σκούρο λαχανί */
+    }
+
+    a {
+        color: #339933; /* Πράσινο για συνδέσμους */
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #006600; /* Σκούρο πράσινο στο hover */
+            text-decoration: underline;
+        }
+</style>
+
+
+<h1 class="text-center mb-4">Λεπτομέρειες</h1>
+
+<div class="container">
+    <h4 class="text-center text-primary mb-3">Αξιολόγηση</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 text-end mb-3">
             @Html.DisplayNameFor(model => model.Reviewer)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9 mb-3">
             @Html.DisplayFor(model => model.Reviewer)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 text-end mb-3">
             @Html.DisplayNameFor(model => model.Comment)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9 mb-3">
             @Html.DisplayFor(model => model.Comment)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 text-end mb-3">
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9 mb-3">
             @Html.DisplayFor(model => model.Rating)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-3 text-end mb-3">
             @Html.DisplayNameFor(model => model.Book)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-9 mb-3">
             @Html.DisplayFor(model => model.Book.Author)
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="text-center mt-4">
+    <a asp-action="Index" asp-route-bookId="@Model.Book?.Id" class="btn btn-secondary">
+        Επιστροφή στη Λίστα
+    </a>
 </div>
